@@ -1,5 +1,5 @@
 using System.Globalization;
-using CrowdsecDotnetDemo;
+using Kestrel.NginxLogs;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.HttpLogging;
 using Serilog;

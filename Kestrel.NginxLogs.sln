@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrowdsecDotnetDemo", "CrowdsecDotnetDemo\CrowdsecDotnetDemo.csproj", "{EFF359C6-440A-4DF1-81FF-50736F2FBA73}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kestrel.NginxLogs", "Kestrel.NginxLogs\Kestrel.NginxLogs.csproj", "{EFF359C6-440A-4DF1-81FF-50736F2FBA73}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.HttpLogging;
 
-namespace CrowdsecDotnetDemo;
+namespace Kestrel.NginxLogs;
 
 public sealed class NginxHttpLoggingInterceptor : IHttpLoggingInterceptor
 {

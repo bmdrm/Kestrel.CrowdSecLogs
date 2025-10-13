@@ -2,7 +2,7 @@ using System.Globalization;
 using Serilog.Events;
 using Serilog.Formatting;
 
-namespace CrowdsecDotnetDemo;
+namespace Kestrel.NginxLogs;
 
 internal sealed class NginxLogFormatter : ITextFormatter
 {
