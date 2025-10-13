@@ -42,7 +42,7 @@ app.UseSerilogRequestLogging();
 app.MapGet("/", async () =>
 {
    await Task.Delay(TimeSpan.FromSeconds(1));
-   return Results.NotFound("");
+   return "Hello World";
 });
 app.Run();
 
