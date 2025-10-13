@@ -1,5 +1,6 @@
 using System.Globalization;
 using CrowdsecDotnetDemo;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.HttpLogging;
 using Serilog;
 using Serilog.Events;
@@ -24,35 +25,24 @@ builder.Services.AddSingleton<IHttpLoggingInterceptor, CustomHttpLoggingIntercep
 
 builder.Services.AddHttpLogging(options =>
 {
-    options.LoggingFields = HttpLoggingFields.RequestPropertiesAndHeaders |                                        
+    options.LoggingFields = HttpLoggingFields.RequestPropertiesAndHeaders |
                             HttpLoggingFields.RequestQuery |
                             HttpLoggingFields.ResponsePropertiesAndHeaders |
-                            HttpLoggingFields.Duration |
-                            HttpLoggingFields.All;
+                            HttpLoggingFields.Duration;
     
     options.CombineLogs = true;
+
 });
 
 var app = builder.Build();
 
 app.UseHttpLogging();
-app.UseSerilogRequestLogging(options =>
-{
-    options.EnrichDiagnosticContext = (diagnosticContext, httpContext) =>
-    {
-        diagnosticContext.Set("RemoteIpAddress", httpContext.Connection.RemoteIpAddress?.ToString());
-        diagnosticContext.Set("RequestMethod", httpContext.Request.Method);
-        diagnosticContext.Set("RequestPath", httpContext.Request.Path);
-        diagnosticContext.Set("StatusCode", httpContext.Response.StatusCode);
-        diagnosticContext.Set("ElapsedMilliseconds", httpContext.Items["ElapsedMilliseconds"] ?? 0);
-        diagnosticContext.Set("UserAgent", httpContext.Request.Headers["User-Agent"].ToString());
-    };
-});
+app.UseSerilogRequestLogging();
 
 app.MapGet("/", async () =>
 {
-   await Task.Delay(TimeSpan.FromSeconds(1)); 
-   return "Hello World";
+   await Task.Delay(TimeSpan.FromSeconds(1));
+   return Results.NotFound("");
 });
 app.Run();
 
@@ -97,6 +87,14 @@ public class BmDrmFormatter : ITextFormatter
             ? bodyBytesSentVal.ToString().Trim('"')
             : "-";
         
-        output.WriteLine($"{remoteAddr} - - [{timestamp}] \"{method} {path} {protocol}\" {statusCode} {bodyBytesSent} \"{userAgent}\" - ");
+        var referer = logEvent.Properties.TryGetValue("Referer", out var refererVal)
+            ? refererVal.ToString().Trim('"')
+            : "-";
+
+        var duration = logEvent.Properties.TryGetValue("Duration", out var durationVal)
+            ? durationVal.ToString().Trim('"')
+            : "0";
+        
+        output.WriteLine($"{remoteAddr} - - [{timestamp}] \"{method} {path} {protocol}\" {statusCode} {bodyBytesSent} \"{referer}\" \"{userAgent}\" {duration}");
     }
 }
