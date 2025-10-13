@@ -1,0 +1,33 @@
+filter: "evt.Parsed.program startsWith 'dotnet'"
+onsuccess: next_stage
+name: youssefbennour/dotnet-logs
+description: "Parse dotnet access and error logs"
+pattern_syntax:
+  NGCUSTOMUSER: '[a-zA-Z0-9\.\@\-\+_%]+'
+  NGCUSTOMURIPATH: "(?:/[A-Za-z0-9$.+!*'\\(\\)\\{\\},~:;=@\\#%&_\\-]*)+"
+  NGCUSTOMURIPATHPARAM: '%{NGCUSTOMURIPATH}(?:%{URIPARAM})?'
+  NPMPLUSFQDN: '%{IPORHOST}||%{DATA}'
+  NGCACHESTATUS: 'HIT|MISS|BYPASS|EXPIRED|STALE|UPDATING|REVALIDATED|-'
+  NUM_OR_DASH: '-|\d*'
+grok:
+  pattern: '%{IPORHOST:remote_addr} %{DATA:commmas}?\[%{HTTPDATE:time_local}\] "%{WORD:verb} %{DATA:request} HTTP/%{NUMBER:http_version}" %{NUMBER:status} %{NUMBER:body_bytes_sent} "%{NOTDQUOTE:http_referer}" "%{NOTDQUOTE:http_user_agent}"'
+  apply_on: message
+  statics:
+    - meta: log_type
+      value: http_access-log
+    - target: evt.StrTime
+      expression: evt.Parsed.time_local
+
+statics:
+  - meta: service
+    value: http
+  - meta: source_ip
+    expression: "evt.Parsed.remote_addr"
+  - meta: http_status
+    expression: "evt.Parsed.status"
+  - meta: http_path
+    expression: "evt.Parsed.request"
+  - meta: http_verb
+    expression: "evt.Parsed.verb"
+  - meta: http_user_agent
+    expression: "evt.Parsed.http_user_agent"

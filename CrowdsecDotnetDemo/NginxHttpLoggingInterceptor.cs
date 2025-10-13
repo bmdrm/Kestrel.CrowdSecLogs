@@ -2,12 +2,10 @@ using Microsoft.AspNetCore.HttpLogging;
 
 namespace CrowdsecDotnetDemo;
 
-public sealed class CustomHttpLoggingInterceptor : IHttpLoggingInterceptor
+public sealed class NginxHttpLoggingInterceptor : IHttpLoggingInterceptor
 {
     public ValueTask OnRequestAsync(HttpLoggingInterceptorContext logContext)
     {
-        var request = logContext.HttpContext.Request;
-    
         var remoteIp = logContext.HttpContext.Connection.RemoteIpAddress?.MapToIPv4().ToString();
         logContext.AddParameter("RemoteIpAddress", remoteIp);
 
