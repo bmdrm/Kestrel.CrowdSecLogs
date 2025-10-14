@@ -18,7 +18,6 @@ Log.Logger = new LoggerConfiguration()
                     new NginxLogFormatter(),
                     "/var/tmp/dotnet/access.log",
                     rollOnFileSizeLimit: true,
-                    fileSizeLimitBytes: 200,
                     retainedFileCountLimit: 3);
             });
     })
