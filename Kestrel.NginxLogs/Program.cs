@@ -1,13 +1,7 @@
-using System.Globalization;
-using System.Net;
-using System.Net.NetworkInformation;
 using Kestrel.NginxLogs;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.HttpLogging;
 using Serilog;
-using Serilog.Events;
 using Serilog.Filters;
-using Serilog.Formatting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,28 +12,21 @@ Log.Logger = new LoggerConfiguration()
     .WriteTo.Logger(lc =>
     {
         lc.Filter.ByIncludingOnly(Matching.FromSource("Serilog.AspNetCore.RequestLoggingMiddleware"))
-            .WriteTo.File(new NginxLogFormatter(), "Logs/http-.log");
+            .WriteTo.Async(opts =>
+            {
+                opts.File(
+                    new NginxLogFormatter(),
+                    "/var/tmp/dotnet/http-.log",
+                    rollOnFileSizeLimit: true,
+                    retainedFileCountLimit: 3);
+            });
     })
     .CreateLogger();
 
 builder.Host.UseSerilog();
 builder.Services.AddSingleton<IHttpLoggingInterceptor, NginxHttpLoggingInterceptor>();
 
-
-/*builder.Services.AddHttpLogging(options =>
-{
-    options.LoggingFields = HttpLoggingFields.RequestPropertiesAndHeaders |
-                            HttpLoggingFields.RequestQuery |
-                            HttpLoggingFields.ResponsePropertiesAndHeaders |
-                            HttpLoggingFields.Duration |
-                            HttpLoggingFields.All;
-    
-    options.CombineLogs = true;
-
-});*/
-
 var app = builder.Build();
-//app.UseHttpLogging();
 app.UseSerilogRequestLogging(options =>
 {
     options.IncludeQueryInRequestPath = true;
