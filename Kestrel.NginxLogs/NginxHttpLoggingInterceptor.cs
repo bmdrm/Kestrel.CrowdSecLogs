@@ -22,7 +22,6 @@ public sealed class NginxHttpLoggingInterceptor : IHttpLoggingInterceptor
         var contentLength = logContext.HttpContext.Response.ContentLength;
         logContext.AddParameter("BodyBytesSent", contentLength ?? 0);
         
-        
         return ValueTask.CompletedTask;
     }
 }
