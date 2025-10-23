@@ -3,9 +3,9 @@ using System.Net;
 using Serilog.Events;
 using Serilog.Formatting;
 
-namespace Kestrel.NginxLogs;
+namespace Kestrel.CrowdSecLogs;
 
-internal sealed class NginxLogFormatter : ITextFormatter
+public class CrowdSecLogFormatter : ITextFormatter
 {
     public void Format(LogEvent logEvent, TextWriter output)
     {

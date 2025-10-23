@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.HttpLogging;
 
-namespace Kestrel.NginxLogs;
+namespace Kestrel.CrowdSecLogs;
 
-public sealed class NginxHttpLoggingInterceptor : IHttpLoggingInterceptor
+public class CrowdSecHttpLoggingInterceptor : IHttpLoggingInterceptor
 {
     public ValueTask OnRequestAsync(HttpLoggingInterceptorContext logContext)
     {

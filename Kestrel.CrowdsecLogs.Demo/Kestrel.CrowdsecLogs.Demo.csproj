@@ -5,15 +5,12 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <RootNamespace>Kestrel.NginxLogs</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Kestrel.CrowdSecLogs" Version="1.0.0" />
       <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
       <PackageReference Include="Serilog.Sinks.Async" Version="2.1.0" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Logs\" />
-    </ItemGroup>
-
 </Project>

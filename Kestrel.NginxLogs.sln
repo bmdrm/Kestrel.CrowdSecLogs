@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kestrel.NginxLogs", "Kestrel.NginxLogs\Kestrel.NginxLogs.csproj", "{EFF359C6-440A-4DF1-81FF-50736F2FBA73}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{8B132950-AE11-4734-B13A-0A44ACED639A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kestrel.CrowdSecLogs", "Kestrel.CrowdSecLogs\Kestrel.CrowdSecLogs.csproj", "{604EA126-1842-4429-92AB-CB72687A2B5F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -8,9 +10,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EFF359C6-440A-4DF1-81FF-50736F2FBA73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EFF359C6-440A-4DF1-81FF-50736F2FBA73}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EFF359C6-440A-4DF1-81FF-50736F2FBA73}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EFF359C6-440A-4DF1-81FF-50736F2FBA73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{604EA126-1842-4429-92AB-CB72687A2B5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{604EA126-1842-4429-92AB-CB72687A2B5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{604EA126-1842-4429-92AB-CB72687A2B5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{604EA126-1842-4429-92AB-CB72687A2B5F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{604EA126-1842-4429-92AB-CB72687A2B5F} = {8B132950-AE11-4734-B13A-0A44ACED639A}
 	EndGlobalSection
 EndGlobal
