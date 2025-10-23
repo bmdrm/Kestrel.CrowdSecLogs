@@ -4,6 +4,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{8B132950-AE1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kestrel.CrowdSecLogs", "Kestrel.CrowdSecLogs\Kestrel.CrowdSecLogs.csproj", "{604EA126-1842-4429-92AB-CB72687A2B5F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kestrel.CrowdsecLogs.Demo", "Kestrel.CrowdsecLogs.Demo\Kestrel.CrowdsecLogs.Demo.csproj", "{A08588CB-C817-4646-BAF9-E2B6D0154A2E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -14,6 +16,10 @@ Global
 		{604EA126-1842-4429-92AB-CB72687A2B5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{604EA126-1842-4429-92AB-CB72687A2B5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{604EA126-1842-4429-92AB-CB72687A2B5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A08588CB-C817-4646-BAF9-E2B6D0154A2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A08588CB-C817-4646-BAF9-E2B6D0154A2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A08588CB-C817-4646-BAF9-E2B6D0154A2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A08588CB-C817-4646-BAF9-E2B6D0154A2E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{604EA126-1842-4429-92AB-CB72687A2B5F} = {8B132950-AE11-4734-B13A-0A44ACED639A}
